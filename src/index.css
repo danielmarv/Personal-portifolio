@@ -114,6 +114,36 @@
   -webkit-text-fill-color: transparent;
 }
 
+.purple-text-gradient {
+  background: #915eff;
+  background: linear-gradient(135deg, #915eff 0%, #a77bff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0e27;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #915eff;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a77bff;
+}
+
 /* canvas- styles */
 .canvas-loader {
   font-size: 10px;
