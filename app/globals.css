@@ -1,0 +1,252 @@
+@import 'tailwindcss';
+
+/* ---------------------------------------------------------------------------
+   Aurora Deep-Space
+   A dark, single-look theme. Green leads the aurora ramp because in a ledger
+   green means finality — the thing this work is actually about.
+   --------------------------------------------------------------------------- */
+
+@theme {
+  /* Raw palette */
+  --color-void: #04050d;
+  --color-abyss: #070a16;
+  --color-surface: #0a0e1f;
+  --color-surface-raised: #111632;
+  --color-hairline: #1c2242;
+
+  --color-aurora-green: #3ddc97;
+  --color-aurora-cyan: #2bc0e4;
+  --color-aurora-violet: #8b5cf6;
+
+  --color-ink: #edeff7;
+  --color-ink-dim: #a7adc9;
+  --color-ink-muted: #7e86a8;
+  --color-ink-faint: #727aa0;
+
+  /* Semantic tokens — shadcn/ui reads these. */
+  --color-background: var(--color-void);
+  --color-foreground: var(--color-ink);
+  --color-card: var(--color-surface);
+  --color-card-foreground: var(--color-ink);
+  --color-popover: var(--color-surface-raised);
+  --color-popover-foreground: var(--color-ink);
+  --color-primary: var(--color-aurora-green);
+  --color-primary-foreground: var(--color-void);
+  --color-secondary: var(--color-surface-raised);
+  --color-secondary-foreground: var(--color-ink);
+  --color-muted: var(--color-surface-raised);
+  --color-muted-foreground: var(--color-ink-muted);
+  --color-accent: var(--color-aurora-violet);
+  --color-accent-foreground: var(--color-ink);
+  --color-destructive: #f2555a;
+  --color-destructive-foreground: var(--color-ink);
+  --color-border: var(--color-hairline);
+  --color-input: var(--color-hairline);
+  --color-ring: var(--color-aurora-green);
+
+  /* Type */
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
+
+  /* A type scale on a ~1.25 ratio, clamped for fluid display sizes. */
+  --text-display: clamp(2.5rem, 1.1rem + 4.4vw, 5.75rem);
+  --text-display--line-height: 0.88;
+  --text-display--letter-spacing: -0.04em;
+  --text-title: clamp(1.75rem, 1.1rem + 2.2vw, 3.25rem);
+  --text-title--line-height: 1;
+  --text-title--letter-spacing: -0.03em;
+  --text-heading: clamp(1.5rem, 1.1rem + 1.5vw, 2.25rem);
+  --text-heading--line-height: 1.12;
+  --text-heading--letter-spacing: -0.02em;
+  --text-lead: clamp(1.0625rem, 0.98rem + 0.4vw, 1.3125rem);
+  --text-lead--line-height: 1.55;
+
+  --radius-panel: 1.25rem;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Keep anchored sections clear of the fixed header. */
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* A visible, high-contrast focus ring everywhere. */
+  :focus-visible {
+    outline: 2px solid var(--color-aurora-green);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--color-aurora-green) 30%, transparent);
+    color: var(--color-ink);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-void);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-hairline);
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-ink-faint);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@utility container-page {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 84rem;
+  padding-inline: 1.5rem;
+
+  @media (width >= 48rem) {
+    padding-inline: 2.5rem;
+  }
+
+  @media (width >= 80rem) {
+    padding-inline: 4rem;
+  }
+}
+
+/* The aurora ribbon: green → cyan → violet. Used as a masked text fill on a
+   single headline, and as a hairline on section rules. Never as a background
+   wash behind body copy. */
+@utility aurora-text {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-aurora-green) 0%,
+    var(--color-aurora-cyan) 46%,
+    var(--color-aurora-violet) 100%
+  );
+  background-clip: text;
+  color: transparent;
+}
+
+@utility aurora-rule {
+  height: 1px;
+  border: 0;
+  background-image: linear-gradient(
+    90deg,
+    var(--color-aurora-green) 0%,
+    var(--color-aurora-cyan) 38%,
+    var(--color-aurora-violet) 72%,
+    transparent 100%
+  );
+  opacity: 0.55;
+}
+
+/* Glass panel. One radius, one border treatment, reused everywhere so the
+   page does not read as a kit of mismatched cards. */
+@utility panel {
+  background-color: color-mix(in oklab, var(--color-surface) 72%, transparent);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-panel);
+  backdrop-filter: blur(14px);
+}
+
+/* One orchestrated page-load reveal, used only in the hero. Section content
+   further down the page appears without entrance animation by design. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@utility rise {
+  animation: rise 1s var(--ease-out-expo) both;
+}
+
+@utility fade-in {
+  animation: fade 1.4s var(--ease-out-expo) both;
+}
+
+@utility breathe {
+  animation: breathe 2.8s ease-in-out infinite;
+}
+
+/* Ledger bars grow from zero once scrolled into view. */
+@keyframes ledger-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@utility ledger-bar {
+  transform-origin: left center;
+  animation: ledger-grow 1.1s var(--ease-out-expo) both;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}

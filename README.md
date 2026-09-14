@@ -1,108 +1,104 @@
-# 🚀 Joshua's 3D Developer Portfolio
+# Ntege Daniel Marvin — portfolio
 
-![Portfolio Banner](https://img.shields.io/badge/Portfolio-2026-915EFF?style=for-the-badge)
-![React](https://img.shields.io/badge/React-18.2-61DAFB?style=for-the-badge&logo=react)
-![Three.js](https://img.shields.io/badge/Three.js-Latest-000000?style=for-the-badge&logo=three.js)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.0-38B2AC?style=for-the-badge&logo=tailwind-css)
+Personal site for [Ntege Daniel Marvin](https://github.com/danielmarv), software
+engineer in Kampala, Uganda. Built with Next.js 16, React 19 and Tailwind CSS 4,
+with a WebGL consensus network in the hero.
 
-## 🌟 Overview
+## The hero
 
-An immersive 3D portfolio website showcasing cutting-edge web development skills with interactive 3D graphics, smooth animations, and modern design principles. Built to demonstrate expertise in full-stack development, 3D web technologies, and creative problem-solving.
+The hero renders a live gossip network rather than a decorative particle field.
+Sixty-six nodes sit on a Fibonacci sphere, each connected to its three nearest
+peers; messages travel the edges continuously, and every few seconds a consensus
+round starts at a random node and propagates outward by breadth-first hop
+distance, turning each node green as finality reaches it.
 
-## ✨ Features
+The graph maths lives in [`lib/network.ts`](lib/network.ts), free of three.js and
+React so the topology can be unit-tested on its own — including the property that
+the generated graph is always fully connected, since a disconnected node would
+never light up.
 
-- 🎨 **Stunning 3D Graphics** - Interactive 3D models and animations using Three.js and React Three Fiber
-- 🎭 **Smooth Animations** - Fluid transitions and effects powered by Framer Motion
-- 📱 **Fully Responsive** - Optimized for all devices from mobile to desktop
-- 🌓 **Dark Theme** - Modern dark mode design with custom color palette
-- 📧 **Contact Form** - Integrated email functionality using EmailJS
-- ⚡ **Performance Optimized** - Lazy loading, code splitting, and Suspense for fast load times
-- 🎯 **SEO Friendly** - Optimized for search engines and social media sharing
+Where a visitor prefers reduced motion, the settled state is baked directly into
+the geometry buffers and the render loop never starts. Where WebGL is
+unavailable, the canvas is not mounted at all and the CSS aurora carries the
+hero on its own.
 
-## 🛠️ Technologies
+## Content
 
-### Frontend
-- **React 18.2** - Modern React with Hooks and functional components
-- **Three.js** - 3D graphics rendering and WebGL integration
-- **React Three Fiber** - React renderer for Three.js
-- **Framer Motion** - Animation library for smooth transitions
-- **Tailwind CSS** - Utility-first CSS framework
-- **Vite** - Next-generation frontend tooling
+All copy and data live under [`content/`](content/) — profile, projects,
+contribution ledger, timeline and stack — so text is never hardcoded in a
+component and translations can be added without touching the UI.
 
-### Backend & Services
-- **EmailJS** - Email service integration for contact form
-- **Vercel/Netlify** - Deployment and hosting (recommended)
+The contribution figures come from the GitHub search API and can be reproduced:
 
-## 🚀 Getting Started
-
-### Prerequisites
-- Node.js (v16 or higher)
-- npm or yarn package manager
-
-### Installation
-
-1. Clone the repository
-```bash
-git clone https://github.com/joshictech/personal-portfolio.git
-cd personal-portfolio
+```
+author:danielmarv type:pr is:merged -user:danielmarv
 ```
 
-2. Install dependencies
-```bash
-npm install
-```
+Tests in [`test/content.test.ts`](test/content.test.ts) assert that the ledger
+still sums to the number shown in the hero, so the two cannot drift apart.
 
-3. Create environment variables
-Create a `.env` file in the root directory and add your EmailJS credentials:
-```env
-VITE_APP_EMAILJS_SERVICE_ID=your_service_id
-VITE_APP_EMAILJS_TEMPLATE_ID=your_template_id
-VITE_APP_EMAILJS_PUBLIC_KEY=your_public_key
-```
+## Getting started
 
-4. Start the development server
-```bash
-npm run dev
-```
-
-5. Open your browser and visit `http://localhost:5173`
-
-## 📦 Build for Production
+Requires Node 24 (see [`.nvmrc`](.nvmrc)) and pnpm.
 
 ```bash
-npm run build
+nvm use          # or: fnm use
+corepack enable  # picks up the pnpm version from package.json
+pnpm install
+pnpm dev
 ```
 
-The optimized production build will be in the `dist` folder.
+The site runs at http://localhost:3000.
 
-## 🎯 Key Sections
+## Commands
 
-1. **Hero** - Animated introduction with 3D computer model
-2. **About** - Professional overview and core competencies
-3. **Experience** - Detailed work history with timeline visualization
-4. **Projects** - Showcase of best work with live demos and code links
-5. **Testimonials** - Client feedback and recommendations
-6. **Contact** - Interactive contact form with 3D Earth visualization
+| Command              | What it does                         |
+| -------------------- | ------------------------------------ |
+| `pnpm dev`           | Development server                   |
+| `pnpm build`         | Production build (standalone output) |
+| `pnpm start`         | Serve the production build           |
+| `pnpm lint`          | ESLint                               |
+| `pnpm typecheck`     | TypeScript, no emit                  |
+| `pnpm test`          | Vitest, single run                   |
+| `pnpm test:coverage` | Vitest with coverage thresholds      |
+| `pnpm format`        | Prettier                             |
 
-## 🎨 Customization
+## Stack
 
-To personalize this portfolio:
+- **Next.js 16** — App Router, Turbopack, `output: 'standalone'` for containers
+- **React 19** — pinned to the 19.2 line, which is what React Three Fiber 9
+  declares support for
+- **Tailwind CSS 4** — CSS-first theme in [`app/globals.css`](app/globals.css),
+  with the full semantic token set so shadcn/ui components drop in unchanged
+- **React Three Fiber / three.js** — custom point and line shaders, no helper
+  library
+- **TypeScript 6** — strict, with `noUncheckedIndexedAccess`. Held at 6.x
+  because typescript-eslint does not yet support the 7.0 compiler API
+- **Vitest** — unit tests with a 70% coverage floor
 
-1. **Update personal info** in `src/constants/index.js`
-2. **Modify colors** in `tailwind.config.cjs`
-3. **Change 3D models** in `public/` directory
-4. **Update content** in component files under `src/components/`
+## Deployment
 
-## 📄 License
+Set `NEXT_PUBLIC_SITE_URL` to the canonical origin so metadata, the sitemap and
+`robots.txt` resolve correctly. Every route is static, so the site can be served
+from any Node host.
 
-This project is open source and available under the MIT License.
+`next.config.ts` sets `output: 'standalone'`, which emits a self-contained server
+in `.next/standalone`. Next does **not** copy the static assets into it, so a
+container build has to do that itself:
 
-## 🤝 Connect
+```dockerfile
+COPY --from=build /app/.next/standalone ./
+COPY --from=build /app/.next/static ./.next/static
+COPY --from=build /app/public ./public
+CMD ["node", "server.js"]
+```
 
-- **Website**: [joshictech.dev](https://joshictech.dev)
-- **GitHub**: [@joshictech](https://github.com/joshictech)
-- **Email**: contact@joshictech.dev
+For a local production preview, `pnpm start` is enough — it prints a warning
+about the standalone setting and then serves the build normally.
 
----
+## Accessibility
 
-⭐ If you like this portfolio, give it a star on GitHub!
+Audited with axe-core at desktop and mobile widths — zero violations across
+WCAG 2.1 A and AA plus best-practice rules. Motion respects
+`prefers-reduced-motion`, focus is visible throughout, and the hero canvas is
+hidden from assistive technology with a text description in its place.
