@@ -1,11 +1,12 @@
 'use client';
 
 import { Menu, X } from 'lucide-react';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
-import { profile } from '@/content/profile';
+import avatar from '@/public/avatar.png';
 
-import { Logo } from './ui/logo';
+import { profile } from '@/content/profile';
 import { nav, ui } from '@/content/site';
 import { cn } from '@/lib/utils';
 
@@ -50,12 +51,15 @@ export function SiteHeader() {
           href="#main"
           className="group text-ink flex items-center gap-3 text-sm font-semibold tracking-tight"
         >
-          <span
+          <Image
+            src={avatar}
+            alt=""
             aria-hidden
-            className="border-hairline bg-surface group-hover:border-aurora-green/50 grid h-9 w-9 place-items-center rounded-lg border transition-colors"
-          >
-            <Logo className="h-5 w-5" idSuffix="header" />
-          </span>
+            width={72}
+            height={72}
+            priority
+            className="border-hairline group-hover:border-aurora-green/60 h-9 w-9 rounded-full border object-cover transition-colors"
+          />
           <span className="sr-only sm:not-sr-only">{profile.shortName}</span>
         </a>
 
