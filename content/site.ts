@@ -7,7 +7,6 @@ export interface NavItem {
 }
 
 export const nav: readonly NavItem[] = [
-  { id: 'work', label: 'Work', href: '#work' },
   { id: 'open-source', label: 'Open source', href: '#open-source' },
   { id: 'path', label: 'Path', href: '#path' },
   { id: 'stack', label: 'Stack', href: '#stack' },
@@ -15,13 +14,6 @@ export const nav: readonly NavItem[] = [
 ] as const;
 
 export const sections = {
-  work: {
-    heading: 'Selected work',
-    standfirst:
-      'Four systems I designed and built. Each one is public, and each one exists ' +
-      'because something in Uganda or the wider ecosystem needed it.',
-    more: 'Also built',
-  },
   openSource: {
     heading: 'The ledger',
     standfirst:
@@ -58,7 +50,6 @@ export const ui = {
   viewRepository: 'View repository',
   viewOnGitHub: 'View on GitHub',
   mergedPullRequests: 'merged pull requests',
-  availableForWork: 'Available for work',
   heroScrollHint: 'Scroll',
   networkCaption: 'A gossip network reaching consensus — the primitive underneath most of my work.',
   networkPaused: 'Animation paused — reduced motion is enabled.',

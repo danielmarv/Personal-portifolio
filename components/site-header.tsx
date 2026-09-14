@@ -4,6 +4,8 @@ import { Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 import { profile } from '@/content/profile';
+
+import { Logo } from './ui/logo';
 import { nav, ui } from '@/content/site';
 import { cn } from '@/lib/utils';
 
@@ -50,9 +52,9 @@ export function SiteHeader() {
         >
           <span
             aria-hidden
-            className="border-hairline bg-surface text-aurora-green group-hover:border-aurora-green/50 grid h-9 w-9 place-items-center rounded-lg border font-mono text-xs transition-colors"
+            className="border-hairline bg-surface group-hover:border-aurora-green/50 grid h-9 w-9 place-items-center rounded-lg border transition-colors"
           >
-            {profile.initials}
+            <Logo className="h-5 w-5" idSuffix="header" />
           </span>
           <span className="sr-only sm:not-sr-only">{profile.shortName}</span>
         </a>

@@ -21,7 +21,6 @@ export interface Metric {
 export const profile = {
   name: 'Ntege Daniel Marvin',
   shortName: 'Daniel Ntege',
-  initials: 'ND',
   role: 'Software Engineer',
   focus: 'Backend systems, distributed ledgers and developer tooling',
   organisation: 'Open Elements',
@@ -29,7 +28,6 @@ export const profile = {
   location: 'Kampala, Uganda',
   timezone: 'Africa/Kampala',
   email: 'danientege785@gmail.com',
-  available: true,
   availability: 'Open to backend, platform and open-source engineering work.',
 
   /** Hero statement. Two sentences, no adjectives that a reader cannot verify. */
@@ -45,13 +43,17 @@ export const profile = {
       'Day to day that means TypeScript and Node on the surface, PostgreSQL and ' +
       'Prisma underneath, and Hedera’s consensus service when a record has to ' +
       'outlive the company that wrote it.',
-    'Most of my output is open source. I contribute to the Hiero ledger SDKs, ' +
-      'the Open Elements platform, Adoptium and AirQo’s air-quality tooling, and ' +
-      'I maintain ClyCites — a market intelligence platform for Ugandan farmer ' +
+    'Most of my output is open source, and most of it is maintenance rather than ' +
+      'launches. I help maintain the Python and Swift ledger SDKs for Hiero — the ' +
+      'Linux Foundation project underpinning Hedera and compatible networks — and ' +
+      'the conformance runner that holds every Hiero SDK to the same test suite. ' +
+      'I also maintain ClyCites, a market intelligence platform for Ugandan farmer ' +
       'cooperatives that started as a university project and did not stop.',
-    'I studied Software Engineering at Bugema University and joined Open Elements ' +
-      'as a developer, where I work across Java and TypeScript services, ' +
-      'S3-compatible storage and the tooling that keeps open-source projects moving.',
+    'I studied Software Engineering at Bugema University and work at Open Elements ' +
+      'across Java and TypeScript services. Most of that has been OES, their ' +
+      'S3-compatible object storage service — proving it against the workloads a ' +
+      'real application throws at object storage: multipart uploads, presigned ' +
+      'URLs, versioning and ranged reads, with no fixtures and nothing mocked.',
   ],
 } as const;
 

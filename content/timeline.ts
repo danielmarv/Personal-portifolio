@@ -23,29 +23,28 @@ export const timeline: readonly TimelineEntry[] = [
     period: 'April 2025 — present',
     ongoing: true,
     summary:
-      'Building and maintaining platform services across Java and TypeScript, and ' +
-      'the tooling that keeps the company’s open-source commitments moving.',
+      'Building and maintaining platform services across Java and TypeScript — ' +
+      'object storage, event ingestion and the systems the business runs on.',
     contributions: [
-      'Validated an S3-compatible object store against real consumer workloads — multipart uploads, presigned URLs, versioning and ranged reads',
-      'Shipped internal finance tooling and a Spring-based GitHub webhook service',
-      'Maintained the public website and its Decap CMS proxy',
-      'Contributed to the good-first-issue provider that routes newcomers into open-source work',
+      'Proved out OES, the S3-compatible object storage service, against real consumer workloads — multipart uploads, presigned URLs, versioning, object versions and ranged reads',
+      'Built a Spring-based GitHub webhook service for event-driven automation',
+      'Shipped the internal finance platform, server and frontend',
     ],
     href: 'https://open-elements.com',
   },
   {
     id: 'hiero',
-    role: 'Open Source Contributor',
+    role: 'SDK Maintainer and Contributor',
     organisation: 'Hiero — LF Decentralized Trust',
     period: 'February 2026 — present',
     ongoing: true,
     summary:
-      'Contributing to the multi-language ledger SDKs and developer surface of the ' +
-      'Hiero project under the Linux Foundation.',
+      'Maintaining and extending the multi-language ledger SDKs behind Hiero, the ' +
+      'Linux Foundation project underpinning Hedera and compatible networks.',
     contributions: [
-      'Python and Swift SDK contributions for on-ledger assets and smart contracts',
-      'Contributor analytics tooling tracking activity and diversity across the organisation',
-      'x402 payment protocol experiments and the Technology Compatibility Kit runner',
+      'Maintain and extend the Python and Swift SDKs for on-ledger assets and smart contracts',
+      'Work on the Technology Compatibility Kit runner that holds every SDK to one conformance suite',
+      'Built contributor analytics tracking activity and diversity across the organisation',
     ],
     href: 'https://github.com/hiero-ledger',
   },

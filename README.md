@@ -24,9 +24,9 @@ hero on its own.
 
 ## Content
 
-All copy and data live under [`content/`](content/) — profile, projects,
-contribution ledger, timeline and stack — so text is never hardcoded in a
-component and translations can be added without touching the UI.
+All copy and data live under [`content/`](content/) — profile, contribution
+ledger, timeline and stack — so text is never hardcoded in a component and
+translations can be added without touching the UI.
 
 The contribution figures come from the GitHub search API and can be reproduced:
 

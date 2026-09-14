@@ -62,16 +62,16 @@ export function Hero() {
             style={{ animationDelay: '380ms' }}
           >
             <a
-              href="#work"
+              href="#open-source"
               className="bg-ink text-void hover:bg-aurora-green rounded-full px-7 py-3.5 text-sm font-semibold transition-colors"
             >
-              See the work
+              Read the ledger
             </a>
             <a
-              href="#open-source"
+              href="#contact"
               className="border-hairline text-ink hover:border-aurora-green/60 hover:text-aurora-green rounded-full border px-7 py-3.5 text-sm font-semibold transition-colors"
             >
-              Read the ledger
+              Get in touch
             </a>
           </div>
         </div>

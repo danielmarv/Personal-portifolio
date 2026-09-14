@@ -2,7 +2,6 @@ import { describe, expect, it } from 'vitest';
 
 import { contributions, peakMerged, totalMerged } from '@/content/contributions';
 import { metrics, profile, socials } from '@/content/profile';
-import { projects } from '@/content/projects';
 import { stack } from '@/content/stack';
 import { timeline } from '@/content/timeline';
 
@@ -38,29 +37,6 @@ describe('contributions ledger', () => {
     const owners = new Set(contributions.flatMap((group) => group.owners));
     const headline = metrics.find((metric) => metric.id === 'orgs');
     expect(owners.size).toBe(headline?.value);
-  });
-});
-
-describe('projects', () => {
-  it('should give every project a unique id', () => {
-    const ids = projects.map((project) => project.id);
-    expect(new Set(ids).size).toBe(ids.length);
-  });
-
-  it('should point every project at a GitHub repository over HTTPS', () => {
-    for (const project of projects) {
-      expect(project.href.startsWith('https://github.com/')).toBe(true);
-    }
-  });
-
-  it('should mark exactly four projects as featured', () => {
-    expect(projects.filter((project) => project.featured)).toHaveLength(4);
-  });
-
-  it('should describe a stack for every project', () => {
-    for (const project of projects) {
-      expect(project.stack.length).toBeGreaterThan(0);
-    }
   });
 });
 

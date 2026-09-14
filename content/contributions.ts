@@ -35,8 +35,8 @@ export const contributions: readonly ContributionGroup[] = [
     id: 'open-elements',
     organisation: 'Open Elements',
     summary:
-      'Company platform, the S3-compatible object store, a Spring webhook service ' +
-      'and internal finance tooling, plus the public website and Decap proxy.',
+      'The S3-compatible object storage service, a Spring webhook service and the ' +
+      'internal finance platform.',
     owners: ['OpenElements', 'OpenElementsLabs'],
     merged: 147,
     href: 'https://github.com/OpenElements',
@@ -57,8 +57,8 @@ export const contributions: readonly ContributionGroup[] = [
     id: 'hiero',
     organisation: 'Hiero (LF Decentralized Trust)',
     summary:
-      'Ledger SDKs in Python and Swift, the project website, contributor analytics ' +
-      'and x402 payment experiments.',
+      'Maintaining and extending the Python and Swift ledger SDKs, the SDK ' +
+      'compatibility test runner and contributor analytics.',
     owners: ['hiero-ledger', 'hiero-hackers'],
     merged: 78,
     href: 'https://github.com/hiero-ledger',
